@@ -1,0 +1,70 @@
+[33mcommit 034ba74b3412df6bdb5b075b37eb7c7c83f763e9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: Dulan Bandara <50689681+DulanNB@users.noreply.github.com>
+Date:   Tue Aug 24 22:35:52 2021 +0530
+
+    change
+
+[33mcommit 39c7e942f3c6023535f027e31887d259166fec91[m
+Author: Nish <dulan418@gmail.com>
+Date:   Tue Jun 1 14:10:05 2021 +0530
+
+    2
+
+[33mcommit 8c1db3eba2166746f04d48639214001cff895f5b[m
+Merge: 0721f35 5c76122
+Author: Nish <dulan418@gmail.com>
+Date:   Tue Jun 1 14:09:51 2021 +0530
+
+    Merge branch 'main' of https://github.com/DulanNB/Pharmacy_Inventory
+    
+     Conflicts:
+    	LICENSE
+
+[33mcommit 0721f35e9c950ec2f917ee179f6fe2a51da41a75[m
+Author: Nish <dulan418@gmail.com>
+Date:   Tue Jun 1 14:09:15 2021 +0530
+
+    2
+
+[33mcommit 5c761224069393ccb374d390d9cf6d2fc5787fbd[m
+Author: Dulan Bandara <50689681+DulanNB@users.noreply.github.com>
+Date:   Tue Jun 1 14:07:30 2021 +0530
+
+    Update LICENSE
+
+[33mcommit 8748c54185cdf5694e36eb7e2a52a055df4d99da[m
+Author: Dulan Bandara <50689681+DulanNB@users.noreply.github.com>
+Date:   Tue Jun 1 06:05:06 2021 +0530
+
+    Update README.md
+
+[33mcommit fc1396d6453c28a7debdcfc4809879763cb5e63c[m
+Merge: 15bc17c a939b8e
+Author: Nish <dulan418@gmail.com>
+Date:   Tue Jun 1 05:50:12 2021 +0530
+
+    Merge branch 'main' of https://github.com/DulanNB/Pharmacy_Inventory
+
+[33mcommit 15bc17cccb6fcec3f29ce1014098e60e5f913b57[m
+Author: Nish <dulan418@gmail.com>
+Date:   Tue Jun 1 05:48:53 2021 +0530
+
+    2
+
+[33mcommit a939b8e17a567cc5f93a3dd33fbcf0292a264a76[m
+Author: Dulan Bandara <50689681+DulanNB@users.noreply.github.com>
+Date:   Tue Jun 1 05:41:40 2021 +0530
+
+    Update README.md
+
+[33mcommit 34cc8d2430392fa8f62abf52d5992bf632cac95f[m
+Author: Dulan Bandara <50689681+DulanNB@users.noreply.github.com>
+Date:   Tue Jun 1 05:40:03 2021 +0530
+
+    Create .env
+
+[33mcommit d39aea53eea4a2bc935b36e9e362e404f96d8275[m
+Author: Nish <dulan418@gmail.com>
+Date:   Tue Jun 1 05:38:50 2021 +0530
+
+    first commit
