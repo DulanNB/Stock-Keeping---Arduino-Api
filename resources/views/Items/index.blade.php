@@ -23,9 +23,7 @@
         </div>
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">Items List</h6>
-            @can('item-add')
             <a href="{{route('items.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Items</a>
-            @endcan
         </div>
         <div class="card-body">
 
@@ -37,7 +35,7 @@
                             <th>S.N.</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>Quantity</th>
+                            <th>Product Weight (g)</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -47,7 +45,7 @@
                             <th>S.N.</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>Quantity</th>
+                            <th>Product Weight (g)</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -59,21 +57,21 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->item_name}}</td>
                                 <td>{{$item->item_description}}</td>
-                                <td>{{$item->quantity}}</td>
+                                <td>{{$item->product_weight}}</td>
                                 <td>Rs. {{number_format( $item->price , 2, '.' , ',' )}}</td>
 
                                 <td>
-                                    @can('item-edit')
-                                    <a href="{{route('items.edit',[$item->id])}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                                    @endcan
 
-                                        @can('item-remove')
+                                    <a href="{{route('items.edit',[$item->id])}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+
+
+
                                     <form method="POST" action="{{route('items.destroy',[$item->id])}}">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger btn-sm dltBtn" data-id={{$item->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                            @endcan
+
                                 </td>
 
                             </tr>

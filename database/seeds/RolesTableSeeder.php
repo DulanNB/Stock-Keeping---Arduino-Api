@@ -18,15 +18,14 @@ class RolesTableSeeder extends Seeder
 
         $permission = Permission::all();
 
-        $permission_manager = ['customer-manage','customer-edit','customer-remove','customer-add'];
-        $permission_cashier = ['item-manage','item-edit','item-remove','item-add'];
+        $permission_manager = ['item-manage'];
 
-        $roleAdmin = Role::create(['name' => 'owner']);
-        $roleManager = Role::create(['name' => 'manager']);
-        $roleCashier = Role::create(['name' => 'cashier']);
+        $roleAdmin = Role::create(['name' => 'super_admin']);
+        $roleManager = Role::create(['name' => 'inventory_admin']);
+
 
         $roleAdmin->syncPermissions($permission);
-        $roleCashier->syncPermissions($permission_cashier);
         $roleManager->syncPermissions($permission_manager);
+
     }
 }

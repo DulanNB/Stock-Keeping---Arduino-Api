@@ -22,8 +22,8 @@
             </div>
         </div>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary float-left">Customer List</h6>
-            <a href="{{route('customer.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Customers</a>
+            <h6 class="m-0 font-weight-bold text-primary float-left">Vendors List</h6>
+            <a href="{{route('customer.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Vendor</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -59,17 +59,17 @@
                                 <td>{{$customer->phone_number}}</td>
                                 <td>{{$customer->address}}</td>
                                 <td>
-                                    @can('customer-edit')
-                                    <a href="{{route('customer.edit',$customer->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                                    @endcan
 
-                                        @can('customer-remove')
+                                    <a href="{{route('customer.edit',$customer->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+
+
+
                                     <form method="POST" action="{{route('customer.destroy',[$customer->id])}}">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger btn-sm dltBtn" data-id={{$customer->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                        @endcan
+
                                 </td>
                             </tr>
                         @endforeach
@@ -77,7 +77,7 @@
                     </table>
                     <span style="float:right">{{$customers->links()}}</span>
                 @else
-                    <h6 class="text-center">No Students found!!!</h6>
+                    <h6 class="text-center">No Vendors found!!!</h6>
                 @endif
             </div>
         </div>

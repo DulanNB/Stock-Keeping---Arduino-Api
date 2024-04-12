@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main-content')
-@can('item-add')
+
     <div class="card">
         <h5 class="card-header">Add Items</h5>
         <div class="card-body">
@@ -25,9 +25,9 @@
 
 
                 <div class="form-group">
-                    <label for="inputTitle" class="col-form-label">Quantity <span class="text-danger">*</span></label>
-                    <input id="inputTitle" type="number" name="quantity" placeholder="Enter quantity"  value="{{old('quantity')}}" class="form-control">
-                    @error('quantity')
+                    <label for="inputTitle" class="col-form-label">Product Weight (g)  <span class="text-danger">*</span></label>
+                    <input id="inputTitle" type="number" name="product_weight" placeholder="Enter Product Weight in grams"  value="{{old('product_weight')}}" class="form-control">
+                    @error('product_weight')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-@endcan
+
 @endsection
 
 

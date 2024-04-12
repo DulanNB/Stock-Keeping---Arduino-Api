@@ -26,11 +26,6 @@ class model_has_permission extends Seeder
                 'model_type'=>'App\User',
                 'model_id'=>2,
             ),
-            array(
-                'role_id'=>3,
-                'model_type'=>'App\User',
-                'model_id'=>3,
-            ),
         );
         DB::table('model_has_roles')->insert($data);
     }

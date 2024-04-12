@@ -22,10 +22,10 @@
             </div>
         </div>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary float-left">Items List</h6>
-            @can('item-add')
-            <a href="{{route('stock-orders.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Items</a>
-            @endcan
+            <h6 class="m-0 font-weight-bold text-primary float-left">Stock Orders List</h6>
+
+            <a href="{{route('stock-orders.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Stock Order</a>
+
         </div>
         <div class="card-body">
 

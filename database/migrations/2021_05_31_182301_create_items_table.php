@@ -17,7 +17,6 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('item_name');
             $table->string('item_description');
-            $table->integer('quantity');
             $table->float('product_weight');
             $table->float('price');
             $table->timestamps();

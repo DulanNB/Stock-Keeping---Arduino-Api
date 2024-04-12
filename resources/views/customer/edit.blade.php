@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    @can('customer-edit')
+
         <div class="card">
             <h5 class="card-header">Edit Customer</h5>
             <div class="card-body">
@@ -63,7 +63,7 @@
                 </form>
             </div>
         </div>
-    @endcan
+
 @endsection
 
 

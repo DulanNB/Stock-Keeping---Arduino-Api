@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-    @can('customer-add')
+
     <div class="card">
         <h5 class="card-header">Add Customer Details</h5>
         <div class="card-body">
@@ -49,7 +49,6 @@
             </form>
         </div>
     </div>
-    @endcan
 
 @endsection
 

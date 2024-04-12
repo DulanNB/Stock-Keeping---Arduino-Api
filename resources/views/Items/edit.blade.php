@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    @can('item-edit')
+
     <div class="card">
         <h5 class="card-header">Edit Item</h5>
         <div class="card-body">
@@ -40,11 +40,10 @@
                     @enderror
                 </div>
 
-
                 <div class="form-group">
-                    <label for="inputTitle" class="col-form-label">Quantity <span class="text-danger">*</span></label>
-                    <input id="inputTitle" type="number" name="quantity" placeholder="Enter quantity"  value="{{$item->quantity}}" class="form-control">
-                    @error('quantity')
+                    <label for="summary" class="col-form-label">Product Weight</label>
+                    <textarea class="form-control" id="item_description" placeholder="Enter Product weight" name="item_description">{{$item->product_weight}}</textarea>
+                    @error('item_description')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
@@ -63,7 +62,7 @@
             </form>
         </div>
     </div>
-    @endcan
+
 @endsection
 
 

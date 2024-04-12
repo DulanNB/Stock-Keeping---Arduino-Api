@@ -38,7 +38,7 @@ class ItemController extends Controller
         $this->validate($request,[
             'item_name'=>'string|required',
             'item_description'=>'string|required',
-            'quantity'=>'numeric|required',
+            'product_weight'=>'numeric|required',
             'price'=>'numeric|required',
         ]);
         $data= $request->all();
