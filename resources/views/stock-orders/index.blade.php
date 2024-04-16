@@ -41,7 +41,7 @@
                             <th>Price</th>
                             <th>Order Quantity</th>
                             <th>Received Quantity</th>
-                            <th>Received Date</th>
+                            <th>State</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -54,7 +54,7 @@
                             <th>Price</th>
                             <th>Order Quantity</th>
                             <th>Received Quantity</th>
-                            <th>Received Date</th>
+                            <th>State</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>
@@ -62,24 +62,41 @@
 
                         @foreach($stock_orders as $stock_order)
                             <tr>
-                                <td>{{$stock_order->reference_id}}</td>
+                                <td>{{$stock_order->id}}</td>
                                 <td>{{$stock_order->vendor->name}}</td>
                                 <td>{{$stock_order->note}}</td>
                                 <td>{{$stock_order->expected_date}}</td>
                                 <td>{{$stock_order->price}}</td>
                                 <td>{{$stock_order->order_quantity}}</td>
-                                <td>{{$stock_order->received_quantity}}</td>
-                                <td>{{$stock_order->received_date}}</td>
+                                @if($stock_order->received_quantity)
+                                    <td>{{$stock_order->received_quantity}}</td>
+                                @else
+                                    <td>N/A</td>
+                                @endif
+                                <td>{{$stock_order->state}}</td>
                                 <td>
-                                    <!-- Your action buttons here -->
-                                    <!-- Example: -->
-                                    <a href="{{route('stock_orders.edit',[$stock_order->id])}}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
-                                    <form method="POST" action="{{route('stock_orders.destroy',[$stock_order->id])}}">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                                    </form>
+                                    <div class="flex">
+                                        <!-- Edit button -->
+
+                                        <!-- Mark as Received button -->
+                                        @if($stock_order->state=='pending')
+                                        <button  class="btn btn-success btn-sm mr-1 mb-2" data-id="{{$stock_order->id}}" data-toggle="modal" data-target="#receiveModal" data-toggle="tooltip" title="Mark as Received"><i class="fas fa-check"></i> Received</button>
+
+                                        <!-- Delete button -->
+
+                                            <form method="POST" action="{{route('stock_orders.destroy',[$stock_order->id])}}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i> Delete</button>
+                                            </form>
+                                        @else
+                                            N/A
+                                        @endif
+
+
+                                    </div>
                                 </td>
+
                             </tr>
                         @endforeach
                         </tbody>
@@ -89,6 +106,28 @@
                 @else
                     <h6 class="text-center">No Stock Orders found!!! Please create Items</h6>
                 @endif
+            </div>
+        </div>
+        <div class="modal fade" id="receiveModal" tabindex="-1" role="dialog" aria-labelledby="receiveModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="receiveModalLabel">Mark Order as Received</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="receiveForm" method="POST" action="{{ route('stock-orders.receive', ['stockOrder' => $stock_order->id]) }}">
+                            @csrf
+                            <div class="form-group">
+                                <label for="receivedQuantity">Received Quantity:</label>
+                                <input type="number" class="form-control" id="receivedQuantity" name="received_quantity" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

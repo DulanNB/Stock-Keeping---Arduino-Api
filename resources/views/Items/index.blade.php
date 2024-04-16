@@ -36,6 +36,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Product Weight (g)</th>
+                            <th>Stock Qty</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -46,6 +47,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Product Weight (g)</th>
+                            <th>Stock Qty</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -58,6 +60,7 @@
                                 <td>{{$item->item_name}}</td>
                                 <td>{{$item->item_description}}</td>
                                 <td>{{$item->product_weight}}</td>
+                                <td>{{$item->stock_orders_sum_received_quantity}}</td>
                                 <td>Rs. {{number_format( $item->price , 2, '.' , ',' )}}</td>
 
                                 <td>

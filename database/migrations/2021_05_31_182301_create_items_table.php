@@ -18,6 +18,8 @@ class CreateItemsTable extends Migration
             $table->string('item_name');
             $table->string('item_description');
             $table->float('product_weight');
+            $table->float('low_stock_margin');
+            $table->string('sensor_id')->unique();
             $table->float('price');
             $table->timestamps();
         });

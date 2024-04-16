@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\customers;
 use App\Items;
 use App\StockOrders;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,9 @@ class StockOrdersController extends Controller
     }
     public function index()
     {
-        $stock_orders = StockOrders::orderBy('id', 'DESC')->paginate(10);
+        $stock_orders = StockOrders::orderBy('id', 'DESC')
+            ->with('vendor')
+            ->paginate(10);
         return view('stock-orders.index', compact('stock_orders'));
     }
 
@@ -113,6 +116,22 @@ class StockOrdersController extends Controller
         $stockOrder->update($request->all());
 
         return redirect()->route('stock_orders.index')->with('success', 'Stock Order updated successfully.');
+    }
+
+    public function receive(Request $request, StockOrders $stockOrder)
+    {
+        $request->validate([
+            'received_quantity' => 'required|numeric|min:0', // Validate received quantity
+        ]);
+
+        // Update the stock order with received quantity and date
+        $stockOrder->update([
+            'received_quantity' => $request->received_quantity,
+            'received_date' => Carbon::now(), // Parse received date using Carbon
+            'state' => 'received', // Update state to 'received'
+        ]);
+
+        return redirect()->route('stock-orders.index')->with('success', 'Stock Order marked as received.');
     }
 
     /**

@@ -49,6 +49,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="inputTitle" class="col-form-label">Low stock margin <span class="text-danger">*</span></label>
+                    <input id="inputTitle" type="text" name="low_stock_margin" placeholder="Enter Low stock margin"  value="{{old('low_stock_margin')}}" class="form-control">
+                    @error('low_stock_margin')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="inputTitle" class="col-form-label">Price (LKR) <span class="text-danger">*</span></label>
                     <input id="inputTitle" type="text" name="price" placeholder="Enter Price"  value="{{$item->price}}" class="form-control">
                     @error('price')

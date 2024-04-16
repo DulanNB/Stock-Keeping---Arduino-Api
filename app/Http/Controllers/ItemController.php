@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Items;
 use App\Models\Category;
 use App\Models\student;
+use App\StockOrders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
@@ -25,7 +26,10 @@ class ItemController extends Controller
 
     public function index()
     {
-        $items = Items::orderBy('id','DESC')->paginate(10);;
+        $items = Items::orderBy('id','DESC')
+            ->withsum('stockOrders','received_quantity')
+            ->paginate(10);
+
         return view('items.index',compact('items'));
     }
 
@@ -97,5 +101,20 @@ class ItemController extends Controller
         }
         return Redirect::back();
     }
+
+    public function updateStock()
+    {
+      $item =   Items::where('sensor_id',1)->first();
+      $total_weight = 1000;
+      $stock = StockOrders::Where('item_id',$item->id)->where('state','received')->where('received_quantity','>',0)->first();
+
+      $new_count = $total_weight/$item->product_weight;
+
+      StockOrders::where('id',$stock->id)->update([
+          'quantity'=>$new_count
+      ]);
+
+    }
+
 
 }
