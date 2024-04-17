@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\student;
 use App\StockOrders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
@@ -15,7 +16,7 @@ class ItemController extends Controller
 
     function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
 
 //        $this->middleware('permission:create', ['only' => ['item-add']]);
 //        $this->middleware('permission:store', ['only' => ['item-add']]);
@@ -90,6 +91,8 @@ class ItemController extends Controller
             'quantity'=>'numeric|required',
             'price'=>'numeric|required',
         ]);
+        dd($request);
+
         $data= $request->all();
         $status=$items->fill($data)->save();
 
@@ -102,11 +105,12 @@ class ItemController extends Controller
         return Redirect::back();
     }
 
-    public function updateStock()
+    public function updateStock(Request $request)
     {
+        Log::info($request);
       $item =   Items::where('sensor_id',1)->first();
       $total_weight = 1000;
-      $stock = StockOrders::Where('item_id',$item->id)->where('state','received')->where('received_quantity','>',0)->first();
+      $stock = StockOrders::where('item_id',$item->id)->where('state','received')->where('received_quantity','>',0)->first();
 
       $new_count = $total_weight/$item->product_weight;
 

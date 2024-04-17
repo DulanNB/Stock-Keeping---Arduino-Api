@@ -47,6 +47,7 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
     Route::resource('/customer', 'CustomerController');
 
 
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');

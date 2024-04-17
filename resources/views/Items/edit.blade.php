@@ -57,6 +57,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="inputTitle" class="col-form-label">Sensor Id <span class="text-danger">*</span></label>
+                    <input id="inputTitle" type="text" name="sensor_id" placeholder="Enter sensor id"  value="{{old('sensor_id')}}" class="form-control">
+                    @error('sensor_id')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="inputTitle" class="col-form-label">Price (LKR) <span class="text-danger">*</span></label>
                     <input id="inputTitle" type="text" name="price" placeholder="Enter Price"  value="{{$item->price}}" class="form-control">
                     @error('price')
