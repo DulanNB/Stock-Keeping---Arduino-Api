@@ -31,4 +31,11 @@ StockOrders extends Model
     {
         return $this->belongsTo(customers::class, 'vendor_id', 'id');
     }
+
+    public function getTotalReceivedQuantity(): float
+    {
+        return $this->where('id', $this->id)
+            ->where('state', 'received')
+            ->sum('received_quantity');
+    }
 }

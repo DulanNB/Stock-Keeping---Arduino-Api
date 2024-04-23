@@ -80,10 +80,9 @@
 
                                         <!-- Mark as Received button -->
                                         @if($stock_order->state=='pending')
-                                        <button  class="btn btn-success btn-sm mr-1 mb-2" data-id="{{$stock_order->id}}" data-toggle="modal" data-target="#receiveModal" data-toggle="tooltip" title="Mark as Received"><i class="fas fa-check"></i> Received</button>
+                                            <button class="btn btn-success btn-sm mr-1 mb-2 markAsReceivedBtn" data-id="{{$stock_order->id}}" data-toggle="modal" data-target="#receiveModal" data-toggle="tooltip" title="Mark as Received"><i class="fas fa-check"></i> Received</button>
 
-                                        <!-- Delete button -->
-
+                                            <!-- Delete button -->
                                             <form method="POST" action="{{route('stock_orders.destroy',[$stock_order->id])}}">
                                                 @csrf
                                                 @method('delete')
@@ -92,8 +91,6 @@
                                         @else
                                             N/A
                                         @endif
-
-
                                     </div>
                                 </td>
 
@@ -118,8 +115,9 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="receiveForm" method="POST" action="{{ route('stock-orders.receive', ['stockOrder' => $stock_order->id]) }}">
+                        <form id="receiveForm" method="POST" action="{{ route('stock-orders.receive') }}">
                             @csrf
+                            <input type="hidden" id="order_id" name="order_id">
                             <div class="form-group">
                                 <label for="receivedQuantity">Received Quantity:</label>
                                 <input type="number" class="form-control" id="receivedQuantity" name="received_quantity" required>
@@ -139,30 +137,9 @@
 
 <script>
     $(document).ready(function(){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+        $('.markAsReceivedBtn').click(function(){
+            var orderId = $(this).data('id'); // Get the order ID
+            $('#order_id').val(orderId); // Set the order ID in the hidden input field
         });
-        $('.dltBtn').click(function(e){
-            var form=$(this).closest('form');
-            var dataID=$(this).data('id');
-            // alert(dataID);
-            e.preventDefault();
-            swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this data!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        form.submit();
-                    } else {
-                        swal("Your data is safe!");
-                    }
-                });
-        })
-    })
+    });
 </script>

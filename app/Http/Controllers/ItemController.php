@@ -8,6 +8,7 @@ use App\Models\student;
 use App\StockOrders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
@@ -88,10 +89,10 @@ class ItemController extends Controller
         $this->validate($request,[
             'item_name'=>'string|required',
             'item_description'=>'string|required',
-            'quantity'=>'numeric|required',
             'price'=>'numeric|required',
+            'low_stock_margin'=>'numeric|nullable',
+            'sensor_id'=>'numeric|nullable',
         ]);
-        dd($request);
 
         $data= $request->all();
         $status=$items->fill($data)->save();
@@ -108,15 +109,40 @@ class ItemController extends Controller
     public function updateStock(Request $request)
     {
         Log::info($request);
-      $item =   Items::where('sensor_id',1)->first();
-      $total_weight = 1000;
-      $stock = StockOrders::where('item_id',$item->id)->where('state','received')->where('received_quantity','>',0)->first();
 
-      $new_count = $total_weight/$item->product_weight;
-
-      StockOrders::where('id',$stock->id)->update([
-          'quantity'=>$new_count
-      ]);
+//        $item = Items::where('sensor_id', 1)->first();
+//        $low_stock_margin = $item->low_stock_margin;
+//        $total_weight = 1000;
+//
+//        $stock = StockOrders::where('item_id', $item->id)
+//            ->where('state', 'received')
+//            ->where('received_quantity', '>', 0)
+//            ->first();
+//
+//        $new_count = $total_weight / $item->product_weight;
+//
+//        $new_quantity = $stock->received_quantity - $new_count;
+//
+//
+//        if ($new_quantity <= 0) {
+//            StockOrders::where('id', $stock->id)->update(['state' => 'expired'],['quantity' => 0]);
+//        }
+//        else{
+//            StockOrders::where('id', $stock->id)->update(['quantity' => $new_quantity]);
+//        }
+//
+//        if ( $new_quantity <= $low_stock_margin){
+//            $email = 'recipient@example.com'; // Change this to your recipient email address
+//            $subject = 'Stock Alert';
+//            $message = 'Stock for item ' . $item->name . ' has fallen below the low stock margin.';
+//
+//            Mail::raw($message, function($mail) use ($email, $subject) {
+//                $mail->to($email)->subject($subject);
+//            });
+//
+//            // Log the event
+//            Log::info('Stock for item ' . $item->name . ' has fallen below the low stock margin.');
+//        }
 
     }
 

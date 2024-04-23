@@ -118,11 +118,19 @@ class StockOrdersController extends Controller
         return redirect()->route('stock_orders.index')->with('success', 'Stock Order updated successfully.');
     }
 
-    public function receive(Request $request, StockOrders $stockOrder)
+    public function receive(Request $request)
     {
         $request->validate([
             'received_quantity' => 'required|numeric|min:0', // Validate received quantity
         ]);
+
+        $stockOrder = StockOrders::findOrFail($request['order_id']);
+
+        $existing_order = StockOrders::where('item_id',$stockOrder->item_id)->where('state','received')->where('received_quantity','>',0)->exists();
+
+        if ($existing_order){
+            return redirect()->route('stock-orders.index')->with('error', 'There is ongoing stock order');
+        }
 
         // Update the stock order with received quantity and date
         $stockOrder->update([

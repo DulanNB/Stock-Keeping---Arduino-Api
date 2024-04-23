@@ -50,7 +50,7 @@
 
                 <div class="form-group">
                     <label for="inputTitle" class="col-form-label">Low stock margin <span class="text-danger">*</span></label>
-                    <input id="inputTitle" type="text" name="low_stock_margin" placeholder="Enter Low stock margin"  value="{{old('low_stock_margin')}}" class="form-control">
+                    <input id="inputTitle" type="text" name="low_stock_margin" placeholder="Enter Low stock margin"  value="{{$item->low_stock_margin}}" class="form-control">
                     @error('low_stock_margin')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -58,7 +58,7 @@
 
                 <div class="form-group">
                     <label for="inputTitle" class="col-form-label">Sensor Id <span class="text-danger">*</span></label>
-                    <input id="inputTitle" type="text" name="sensor_id" placeholder="Enter sensor id"  value="{{old('sensor_id')}}" class="form-control">
+                    <input id="inputTitle" type="text" name="sensor_id" placeholder="Enter sensor id"  value="{{$item->sensor_id}}" class="form-control">
                     @error('sensor_id')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
