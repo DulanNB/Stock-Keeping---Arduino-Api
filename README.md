@@ -1,6 +1,3 @@
-Certainly! Below is a template for your project's README file:
-
----
 
 # IoT-Based Stock Management System
 
