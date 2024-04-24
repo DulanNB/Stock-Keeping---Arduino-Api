@@ -1,42 +1,79 @@
-Step 1 - Setting up your development environment on your local machine :
+Certainly! Below is a template for your project's README file:
 
-$ git clone https://bitbucket.org/DulanN/school_billing
+---
 
-* Settup the environment file according to your server and then, 
+# IoT-Based Stock Management System
 
-$ composer update
+The IoT-Based Stock Management System is a transformative solution for efficient and accurate inventory management, integrating Internet of Things (IoT) technology with Laravel web development. This system automates stock updates using weight sensors, streamlines inventory tracking, and enhances efficiency in stock management processes.
 
-$ php artisan key:generate
+## Features
 
-$ php artisan migrate:fresh --seed
+- **Automated Stock Updates:** Utilizes IoT-enabled weight sensors to automate stock updates, eliminating manual counting processes and reducing human error.
+- **Real-Time Inventory Tracking:** Provides real-time updates on stock levels, ensuring accurate and up-to-date inventory management.
+- **Intuitive Web Interface:** Offers an intuitive web interface powered by Laravel, enabling easy product management, stock orders, and vendor tracking.
+- **Integration with Blynk Cloud:** Integrates seamlessly with the Blynk Cloud for remote monitoring and control of stock inventory.
+- **User Management:** Supports user management functionalities, including superadmin, admin, and user roles.
 
-$ php artisan serve
+## Installation
 
+To get started with the IoT-Based Stock Management System, follow these steps:
 
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/DulanNB/Stock-Keeping---Arduino-Api.git
+   ```
 
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd Stock-Keeping---Arduino-Api
+   ```
 
+3. **Install Dependencies:**
+   ```bash
+   composer install
+   ```
 
+4. **Create Environment File:**
+   ```bash
+   cp .env.example .env
+   ```
 
-Step 2 - User Accounts 
+5. **Generate Application Key:**
+   ```bash
+   php artisan key:generate
+   ```
 
-* owner
-  
+6. **Set Database Configuration:**
+   Update the `.env` file with your database credentials.
 
-    owner@owner.com 
-    password - password
+7. **Run Migrations:**
+   ```bash
+   php artisan migrate
+   ```
 
-* cashier
-  
+8. **Seed the Database:**
+   ```bash
+   php artisan db:seed
+   ```
 
-    cashier@cashier.com
-    password - password
+9. **Serve the Application:**
+   ```bash
+   php artisan serve
+   ```
 
-* manager 
-  
+10. **Access the Application:**
+    Open your web browser and navigate to `http://localhost:8000`.
 
-    manager@manager.com
-    password - password
+## Default Credentials
 
+- **Superadmin:**
+  - Email: superadmin@admin.com
+  - Password: adminpassword
 
-EER diagram:
-![](public/img/eer.PNG)
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to customize the content according to your project's specific requirements. Let me know if you need further assistance!
