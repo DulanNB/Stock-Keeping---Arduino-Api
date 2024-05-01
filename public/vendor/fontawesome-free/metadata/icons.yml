@@ -953,7 +953,7 @@ at:
       - address
       - author
       - e-mail
-      - email
+      - emails
       - handle
   styles:
     - solid
@@ -6318,7 +6318,7 @@ envelope:
   search:
     terms:
       - e-mail
-      - email
+      - emails
       - letter
       - mail
       - message
@@ -6339,7 +6339,7 @@ envelope-open:
   search:
     terms:
       - e-mail
-      - email
+      - emails
       - letter
       - mail
       - message
@@ -6359,7 +6359,7 @@ envelope-open-text:
   search:
     terms:
       - e-mail
-      - email
+      - emails
       - letter
       - mail
       - message
@@ -6377,7 +6377,7 @@ envelope-square:
   search:
     terms:
       - e-mail
-      - email
+      - emails
       - letter
       - mail
       - message
@@ -10704,7 +10704,7 @@ inbox:
     terms:
       - archive
       - desk
-      - email
+      - emails
       - mail
       - message
   styles:

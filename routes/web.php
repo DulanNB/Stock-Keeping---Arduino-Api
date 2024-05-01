@@ -41,7 +41,7 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
     Route::resource('/stock-orders', 'StockOrdersController');
     Route::post('/stock-orders', 'StockOrdersController@store')->name('stock_orders.store');
     Route::get('/stock-orders/{stock_order}/edit', 'StockOrdersController@update')->name('stock_orders.edit');
-     Route::post('/stock-order-receive', 'StockOrdersController@receive')->name('stock-orders.receive');
+     Route::get('/stock-order-receive', 'StockOrdersController@receive')->name('stock-orders.receive');
     Route::post('/stock-orders/{stock_order}/destroy', 'StockOrdersController@destroy')->name('stock_orders.destroy');
 //Cus Routes
     Route::resource('/customer', 'CustomerController');

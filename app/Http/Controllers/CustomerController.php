@@ -35,7 +35,7 @@ class CustomerController extends Controller
     {
         $this->validate($request,[
             'name'=>'string|required',
-            'email'=>'email:rfc,dns|string|required',
+            'emails'=>'emails:rfc,dns|string|required',
             'address'=>'string|required',
             'phone_number'=>'required|min:13|numeric',
         ]);
@@ -65,7 +65,7 @@ class CustomerController extends Controller
 
         $this->validate($request,[
             'name'=>'string|required',
-            'email'=>'email:rfc,dns|string|required',
+            'emails'=>'emails:rfc,dns|string|required',
             'address'=>'string|required',
             'phone_number'=>'required|min:13|numeric',
         ]);

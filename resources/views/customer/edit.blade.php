@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
                         <input id="email" type="text" name="email" placeholder="Enter Email" value=" {{$customer->email}}" class="form-control" >
-                        @error('email')
+                        @error('emails')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

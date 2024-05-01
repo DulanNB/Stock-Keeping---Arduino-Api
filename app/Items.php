@@ -19,4 +19,8 @@ class Items extends Model
     {
         return $this->hasMany(StockOrders::class,'item_id');
     }
+    public function receivedStockOrders()
+    {
+        return $this->hasMany(StockOrders::class,'item_id')->where('state', 'received');
+    }
 }

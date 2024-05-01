@@ -18,8 +18,8 @@
 
                 <div class="form-group">
                     <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
-                    <input id="email" type="text" name="email" placeholder="Enter Email" value=" {{old('email')}}" class="form-control" >
-                    @error('email')
+                    <input id="email" type="text" name="email" placeholder="Enter Email" value=" {{old('emails')}}" class="form-control" >
+                    @error('emails')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>

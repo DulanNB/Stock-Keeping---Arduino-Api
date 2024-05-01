@@ -36,7 +36,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('emails') }}" required>
                                     </div>
 
                                     <div class="form-group">

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Items;
+use App\Mail\StockAlert;
 use App\Models\Category;
 use App\Models\student;
 use App\StockOrders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
@@ -28,11 +30,21 @@ class ItemController extends Controller
 
     public function index()
     {
-        $items = Items::orderBy('id','DESC')
-            ->withsum('stockOrders','received_quantity')
-            ->paginate(10);
+        $items = Items::orderBy('id', 'DESC')->paginate(10);
 
-        return view('items.index',compact('items'));
+        foreach ($items as $item) {
+            $totalReceivedQuantity = 0;
+
+            foreach ($item->stockOrders as $order) {
+                if ($order->state === 'received') {
+                    $totalReceivedQuantity += $order->received_quantity;
+                }
+            }
+
+            $item->stock_orders_sum_received_quantity = $totalReceivedQuantity;
+        }
+
+        return view('items.index', compact('items'));
     }
 
     public function create()
@@ -106,43 +118,47 @@ class ItemController extends Controller
         return Redirect::back();
     }
 
-    public function updateStock(Request $request)
+    public function updateStock(Request $request,)
     {
         Log::info($request);
 
-//        $item = Items::where('sensor_id', 1)->first();
-//        $low_stock_margin = $item->low_stock_margin;
-//        $total_weight = 1000;
-//
-//        $stock = StockOrders::where('item_id', $item->id)
-//            ->where('state', 'received')
-//            ->where('received_quantity', '>', 0)
-//            ->first();
-//
-//        $new_count = $total_weight / $item->product_weight;
-//
-//        $new_quantity = $stock->received_quantity - $new_count;
-//
-//
-//        if ($new_quantity <= 0) {
-//            StockOrders::where('id', $stock->id)->update(['state' => 'expired'],['quantity' => 0]);
-//        }
-//        else{
-//            StockOrders::where('id', $stock->id)->update(['quantity' => $new_quantity]);
-//        }
-//
-//        if ( $new_quantity <= $low_stock_margin){
-//            $email = 'recipient@example.com'; // Change this to your recipient email address
-//            $subject = 'Stock Alert';
-//            $message = 'Stock for item ' . $item->name . ' has fallen below the low stock margin.';
-//
-//            Mail::raw($message, function($mail) use ($email, $subject) {
-//                $mail->to($email)->subject($subject);
-//            });
-//
-//            // Log the event
-//            Log::info('Stock for item ' . $item->name . ' has fallen below the low stock margin.');
-//        }
+        $total_weight = $request['value'];
+
+        $item = Items::where('sensor_id', $request['device_id'])->first();
+
+        $low_stock_margin = $item->low_stock_margin;
+
+        $stock = StockOrders::where('item_id', $item->id)
+            ->where('state', 'received')
+            ->where('received_quantity', '>=', 0)
+            ->first();
+
+        $new_count = round($total_weight / $item->product_weight);
+
+        //dd($new_count);
+        if ($new_count <= 0) {
+//            'state' => 'expired',
+            StockOrders::where('id', $stock->id)->update([ 'received_quantity' => 0]);
+        } else {
+            StockOrders::where('id', $stock->id)->update(['received_quantity' => $new_count]);
+        }
+
+
+        if ($new_count <= $low_stock_margin) {
+            Log::info(Cache::has('stock_alert_email_sent'));
+            // Check if the emails was sent within the last minute
+            if (!Cache::has('stock_alert_email_sent')) {
+                $itemName = $item->item_name;
+                Mail::to('admin@admin.com')->send(new StockAlert($itemName));
+
+                // Log the event
+                Log::info('Stock for item ' . $item->item_name . ' has fallen below the low stock margin.');
+
+                // Store a flag in the cache to indicate that the emails was sent
+                Cache::put('stock_alert_email_sent', true, now()->addSeconds(120)); 
+            }
+        }
+
 
     }
 

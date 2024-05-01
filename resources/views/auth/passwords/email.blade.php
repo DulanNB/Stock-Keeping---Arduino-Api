@@ -30,11 +30,11 @@
                                     </div>
                                 @endif
 
-                                <form method="POST" action="{{ route('password.email') }}" class="user">
+                                <form method="POST" action="{{ route('password.emails') }}" class="user">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('emails') }}" required>
                                     </div>
 
                                     <div class="form-group">
