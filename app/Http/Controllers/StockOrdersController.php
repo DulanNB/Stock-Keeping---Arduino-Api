@@ -152,6 +152,6 @@ class StockOrdersController extends Controller
     {
         $stockOrder->delete();
 
-        return redirect()->route('stock_orders.index')->with('success', 'Stock Order deleted successfully.');
+        return redirect()->route('stock-orders.index')->with('success', 'Stock Order deleted successfully.');
     }
 }

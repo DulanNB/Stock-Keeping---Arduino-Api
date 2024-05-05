@@ -122,6 +122,7 @@ class ItemController extends Controller
     {
         Log::info($request);
 
+
         $total_weight = $request['value'];
 
         $item = Items::where('sensor_id', $request['device_id'])->first();
@@ -155,7 +156,7 @@ class ItemController extends Controller
                 Log::info('Stock for item ' . $item->item_name . ' has fallen below the low stock margin.');
 
                 // Store a flag in the cache to indicate that the emails was sent
-                Cache::put('stock_alert_email_sent', true, now()->addSeconds(120)); 
+                Cache::put('stock_alert_email_sent', true, now()->addSeconds(120));
             }
         }
 
